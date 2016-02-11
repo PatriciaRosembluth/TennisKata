@@ -21,15 +21,8 @@ public class TennisGame2 implements TennisGame
         score = player2isWinningPlayer1GoesToZero(score);
         score = player1isWinningLessThanFour(score);
         score = player2isWinningLessThanFour(score);
-        if (player1point > player2point && player2point >= 3)
-        {
-            score = "Advantage player1";
-        }
-        
-        if (player2point > player1point && player1point >= 3)
-        {
-            score = "Advantage player2";
-        }
+        score = player1isWinningByOnePoint(score);
+        score = player2isWinningByOnePoint(score);
         
         if (player1point>=4 && player2point>=0 && (player1point-player2point)>=2)
         {
@@ -41,6 +34,22 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
+
+	private String player2isWinningByOnePoint(String score) {
+		if (player2point > player1point && player1point >= 3)
+        {
+            score = "Advantage player2";
+        }
+		return score;
+	}
+
+	private String player1isWinningByOnePoint(String score) {
+		if (player1point > player2point && player2point >= 3)
+        {
+            score = "Advantage player1";
+        }
+		return score;
+	}
 
 	private String player2isWinningLessThanFour(String score) {
 		if (player2point>player1point && player2point < 4)
