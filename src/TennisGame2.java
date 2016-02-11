@@ -18,18 +18,7 @@ public class TennisGame2 implements TennisGame
         score = sameScoreLessThanFour(score);
         score = sameScoreGreaterEqualToThree(score);
         score = player1isWinningPlayer2GoesToZero(score);
-        if (player2point > 0 && player1point==0)
-        {
-            if (player2point==1)
-                player2result = "Fifteen";
-            if (player2point==2)
-                player2result = "Thirty";
-            if (player2point==3)
-                player2result = "Forty";
-            
-            player1result = "Love";
-            score = player1result + "-" + player2result;
-        }
+        score = player2isWinningPlayer1GoesToZero(score);
         
         if (player1point>player2point && player1point < 4)
         {
@@ -76,6 +65,22 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
+
+	private String player2isWinningPlayer1GoesToZero(String score) {
+		if (player2point > 0 && player1point==0)
+        {
+            if (player2point==1)
+                player2result = "Fifteen";
+            if (player2point==2)
+                player2result = "Thirty";
+            if (player2point==3)
+                player2result = "Forty";
+            
+            player1result = "Love";
+            score = player1result + "-" + player2result;
+        }
+		return score;
+	}
 
 	private String player1isWinningPlayer2GoesToZero(String score) {
 		if (player1point > 0 && player2point==0)
