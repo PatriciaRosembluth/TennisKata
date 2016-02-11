@@ -15,16 +15,7 @@ public class TennisGame2 implements TennisGame
 
     public String getScore(){
         String score = "";
-        if (player1point == player2point && player1point < 4)
-        {
-            if (player1point==0)
-                score = "Love";
-            if (player1point==1)
-                score = "Fifteen";
-            if (player1point==2)
-                score = "Thirty";
-            score += "-All";
-        }
+        score = sameScoreLessThanFour(score);
         if (player1point==player2point && player1point>=3)
             score = "Deuce";
         
@@ -98,6 +89,20 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
+
+	private String sameScoreLessThanFour(String score) {
+		if (player1point == player2point && player1point < 4)
+        {
+            if (player1point==0)
+                score = "Love";
+            if (player1point==1)
+                score = "Fifteen";
+            if (player1point==2)
+                score = "Thirty";
+            score += "-All";
+        }
+		return score;
+	}
     
     public void SetP1Score(int number){
         
