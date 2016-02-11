@@ -144,36 +144,36 @@ public class TennisGame2 implements TennisGame
 		return score;
 	}
     
-    public void SetP1Score(int number){
+    public void setPlayer1Score(int number){
         
         for (int i = 0; i < number; i++)
         {
-            P1Score();
+            player1Score();
         }
             
     }
     
-    public void SetP2Score(int number){
+    public void setPlayer2Score(int number){
         
         for (int i = 0; i < number; i++)
         {
-            P2Score();
+            player2Score();
         }
             
     }
     
-    public void P1Score(){
+    public void player1Score(){
         player1point++;
     }
     
-    public void P2Score(){
+    public void player2Score(){
         player2point++;
     }
 
     public void wonPoint(String player) {
         if (player == "player1")
-            P1Score();
+            player1Score();
         else
-            P2Score();
+            player2Score();
     }
 }
