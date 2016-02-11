@@ -19,32 +19,8 @@ public class TennisGame2 implements TennisGame
         score = sameScoreGreaterEqualToThree(score);
         score = player1isWinningPlayer2GoesToZero(score);
         score = player2isWinningPlayer1GoesToZero(score);
-        
-        if (player1point>player2point && player1point < 4)
-        {
-            if (player1point==2)
-                player1result="Thirty";
-            if (player1point==3)
-                player1result="Forty";
-            if (player2point==1)
-                player2result="Fifteen";
-            if (player2point==2)
-                player2result="Thirty";
-            score = player1result + "-" + player2result;
-        }
-        if (player2point>player1point && player2point < 4)
-        {
-            if (player2point==2)
-                player2result="Thirty";
-            if (player2point==3)
-                player2result="Forty";
-            if (player1point==1)
-                player1result="Fifteen";
-            if (player1point==2)
-                player1result="Thirty";
-            score = player1result + "-" + player2result;
-        }
-        
+        score = player1isWinningLessThanFour(score);
+        score = player2isWinningLessThanFour(score);
         if (player1point > player2point && player2point >= 3)
         {
             score = "Advantage player1";
@@ -65,6 +41,38 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
+
+	private String player2isWinningLessThanFour(String score) {
+		if (player2point>player1point && player2point < 4)
+        {
+            if (player2point==2)
+                player2result="Thirty";
+            if (player2point==3)
+                player2result="Forty";
+            if (player1point==1)
+                player1result="Fifteen";
+            if (player1point==2)
+                player1result="Thirty";
+            score = player1result + "-" + player2result;
+        }
+		return score;
+	}
+
+	private String player1isWinningLessThanFour(String score) {
+		if (player1point>player2point && player1point < 4)
+        {
+            if (player1point==2)
+                player1result="Thirty";
+            if (player1point==3)
+                player1result="Forty";
+            if (player2point==1)
+                player2result="Fifteen";
+            if (player2point==2)
+                player2result="Thirty";
+            score = player1result + "-" + player2result;
+        }
+		return score;
+	}
 
 	private String player2isWinningPlayer1GoesToZero(String score) {
 		if (player2point > 0 && player1point==0)
