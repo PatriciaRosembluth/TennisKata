@@ -22,12 +22,12 @@ public class TennisGame2 implements TennisGame
     }
     
     private String scoreAboveFour() {
-		int scoreDifference = player1points - player2points;
-		if (scoreDifference == 1){
+		int pointsDifference = player1points - player2points;
+		if (pointsDifference == 1){
 			return "Advantage player1";
-		}else if (scoreDifference == -1){
+		}else if (pointsDifference == -1){
 			return "Advantage player2";
-		}else if (scoreDifference >= 2){
+		}else if (pointsDifference >= 2){
 			return "Win for player1";
 		}
 		return "Win for player2";
@@ -35,40 +35,16 @@ public class TennisGame2 implements TennisGame
     }
 
     public String getScore(){
-        String score = "";
-        int tempScore=0;
         if (player1points == player2points){
             return sameScore();
         }else if (player1points >=4 || player2points>=4){
         	return scoreAboveFour();
         }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = player1points;
-                else { score+="-"; tempScore = player2points;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
-        }
-        return score;
+        String [] scoreToName ={"Love", "Fifteen","Thirty", "Forty"}; 
+       
+        return scoreToName[player1points]+ "-" + scoreToName[player2points];
+   
     }
-
-	
     
     public void SetP1Score(int number){
         
