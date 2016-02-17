@@ -13,90 +13,57 @@ public class TennisGame2 implements TennisGame
         this.player2Name = player2Name;
     }
     
-    private String sameScore(String score) {
+    private String sameScore() {
 		String [] values = {"Love-All", "Fifteen-All","Thirty-All"}; 
 		if(player1points<3){
 			return values[player1points];
 		}
 		return "Deuce";
     }
+    
+    private String scoreAboveFour() {
+		int scoreDifference = player1points - player2points;
+		if (scoreDifference == 1){
+			return "Advantage player1";
+		}else if (scoreDifference == -1){
+			return "Advantage player2";
+		}else if (scoreDifference >= 2){
+			return "Win for player1";
+		}
+		return "Win for player2";
+		
+    }
 
     public String getScore(){
         String score = "";
-        if (player1points == player2points && player1points < 4)
-        {
-            score = sameScore(score);
+        int tempScore=0;
+        if (player1points == player2points){
+            return sameScore();
+        }else if (player1points >=4 || player2points>=4){
+        	return scoreAboveFour();
         }
-        if (player1points==player2points && player1points>=3)
-            score = "Deuce";
-        
-        if (player1points > 0 && player2points==0)
+        else
         {
-            if (player1points==1)
-                P1res = "Fifteen";
-            if (player1points==2)
-                P1res = "Thirty";
-            if (player1points==3)
-                P1res = "Forty";
-            
-            P2res = "Love";
-            score = P1res + "-" + P2res;
-        }
-        if (player2points > 0 && player1points==0)
-        {
-            if (player2points==1)
-                P2res = "Fifteen";
-            if (player2points==2)
-                P2res = "Thirty";
-            if (player2points==3)
-                P2res = "Forty";
-            
-            P1res = "Love";
-            score = P1res + "-" + P2res;
-        }
-        
-        if (player1points>player2points && player1points < 4)
-        {
-            if (player1points==2)
-                P1res="Thirty";
-            if (player1points==3)
-                P1res="Forty";
-            if (player2points==1)
-                P2res="Fifteen";
-            if (player2points==2)
-                P2res="Thirty";
-            score = P1res + "-" + P2res;
-        }
-        if (player2points>player1points && player2points < 4)
-        {
-            if (player2points==2)
-                P2res="Thirty";
-            if (player2points==3)
-                P2res="Forty";
-            if (player1points==1)
-                P1res="Fifteen";
-            if (player1points==2)
-                P1res="Thirty";
-            score = P1res + "-" + P2res;
-        }
-        
-        if (player1points > player2points && player2points >= 3)
-        {
-            score = "Advantage player1";
-        }
-        
-        if (player2points > player1points && player1points >= 3)
-        {
-            score = "Advantage player2";
-        }
-        
-        if (player1points>=4 && player2points>=0 && (player1points-player2points)>=2)
-        {
-            score = "Win for player1";
-        }
-        if (player2points>=4 && player1points>=0 && (player2points-player1points)>=2)
-        {
-            score = "Win for player2";
+            for (int i=1; i<3; i++)
+            {
+                if (i==1) tempScore = player1points;
+                else { score+="-"; tempScore = player2points;}
+                switch(tempScore)
+                {
+                    case 0:
+                        score+="Love";
+                        break;
+                    case 1:
+                        score+="Fifteen";
+                        break;
+                    case 2:
+                        score+="Thirty";
+                        break;
+                    case 3:
+                        score+="Forty";
+                        break;
+                }
+            }
         }
         return score;
     }
